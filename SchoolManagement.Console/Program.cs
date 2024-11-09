@@ -38,9 +38,13 @@ while (true)
         case 6:
             AddGradeForStudent(school);
             break;
+        
         case 7:
             DisplayMenu(school);
             break;
+        //case 11:
+        //    DisplayStudentInfo(students); Work on this
+        //    break;
         case 8:
             Environment.Exit(0);
             break;

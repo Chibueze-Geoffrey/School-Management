@@ -10,16 +10,53 @@ public static class ConsoleHelper
         Console.WriteLine("=======================================");
     }
 
-    public static void DisplayStudentInfo(List<Student> students)
+  
+public static void DisplayStudentInfo(List<Student> students)
+{
+    Console.WriteLine("| Student ID | Name          | Age | Grade Level | GPA  |");
+    Console.WriteLine("|------------|---------------|-----|-------------|------|");
+    foreach (var student in students)
     {
-        Console.WriteLine("| Student ID | Name          | Age | Grade Level |");
-        Console.WriteLine("|------------|---------------|-----|-------------|");
-        foreach (var student in students)
-        {
-            Console.WriteLine($"| {student.StudentID} | {student.Name,-12} | {student.Age}  | {student.GradeLevel}         |");
-        }
-        Console.WriteLine("=======================================");
+        Console.WriteLine($"| {student.StudentID} | {student.Name,-12} | {student.Age}  | {student.GradeLevel}         | {student.CalculateGPA():F2} |");
     }
+    Console.WriteLine("=======================================");
+}
+
+public static void DisplayGradeInfo(List<Grade> grades)
+{
+    Console.WriteLine("| Student ID   | Course ID | Score    | Grade Point |");
+    Console.WriteLine("|--------------|-----------|----------|-------------|");
+    foreach (var grade in grades)
+    {
+        Console.WriteLine($"| {grade.StudentID} | {grade.CourseID} | {grade.Score}  | {grade.GradePoint:F1} |");
+    }
+    Console.WriteLine("=======================================");
+}
+
+public static void DisplayAllInformation(School school)
+{
+    DisplayHeader("School Information");
+    school.DisplaySchoolInfo();
+    Console.WriteLine();
+
+    DisplayHeader("Student Information");
+    DisplayStudentInfo(school.Students);
+    Console.WriteLine();
+
+    DisplayHeader("Teacher Information");
+    DisplayTeacherInfo(school.Teachers);
+    Console.WriteLine();
+
+    DisplayHeader("Course Information");
+    DisplayCourseInfo(school.Courses);
+    Console.WriteLine();
+
+    DisplayHeader("Student Grades");
+    foreach (var student in school.Students)
+    {
+        DisplayGradeInfo(student.Grades);
+    }
+}
 
     public static void DisplayTeacherInfo(List<Teacher> teachers)
     {
@@ -43,17 +80,7 @@ public static class ConsoleHelper
         Console.WriteLine("=======================================");
     }
 
-    public static void DisplayGradeInfo(List<Grade> grades)
-    {
-        Console.WriteLine("| Student ID | Course ID | Grade |");
-        Console.WriteLine("|------------|-----------|-------|");
-        foreach (var grade in grades)
-        {
-            Console.WriteLine($"| {grade.StudentID} | {grade.CourseID} | {grade.GradeValue}  |");
-        }
-        Console.WriteLine("=======================================");
-    }
-
+  
     public static void DisplayStudentCourseEnrollment(School school)
     {
         foreach (var student in school.Students)
@@ -78,30 +105,6 @@ public static class ConsoleHelper
         }
     }
 
-    public static void DisplayAllInformation(School school)
-    {
-        DisplayHeader("School Information");
-        school.DisplaySchoolInfo();
-        Console.WriteLine();
-
-        DisplayHeader("Student Information");
-        DisplayStudentInfo(school.Students);
-        Console.WriteLine();
-
-        DisplayHeader("Teacher Information");
-        DisplayTeacherInfo(school.Teachers);
-        Console.WriteLine();
-
-        DisplayHeader("Course Information");
-        DisplayCourseInfo(school.Courses);
-        Console.WriteLine();
-
-        DisplayHeader("Student Course Enrollment");
-        DisplayStudentCourseEnrollment(school);
-        Console.WriteLine();
-
-        DisplayHeader("Teacher Course Assignment");
-        DisplayTeacherCourseAssignment(school);
-    }
+    
 }
 

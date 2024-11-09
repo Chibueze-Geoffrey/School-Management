@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement
 {
@@ -13,6 +11,7 @@ namespace SchoolManagement
         public int Age { get; set; }
         public int GradeLevel { get; set; }
         public List<Course> EnrolledCourses { get; set; }
+        public List<Grade> Grades { get; set; } 
 
         public Student(string name, int age, int gradeLevel, string studentID)
         {
@@ -21,6 +20,7 @@ namespace SchoolManagement
             GradeLevel = gradeLevel;
             StudentID = studentID;
             EnrolledCourses = new List<Course>();
+            Grades = new List<Grade>();
         }
 
         public void EnrollCourse(Course course)
@@ -33,11 +33,24 @@ namespace SchoolManagement
             EnrolledCourses.Remove(course);
         }
         
-        public void GetStudentInfo()
+        public void AddGrade(Grade grade)
         {
-            
-            Console.WriteLine($"Name: {Name}, Age: {Age}, Grade Level: {GradeLevel}, Student ID: {StudentID}");
+            Grades.Add(grade);
         }
 
+        public double CalculateGPA()
+        {
+            return Grade.CalculateGPA(Grades);
+        }
+
+
+
+        public void GetStudentInfo()
+        {
+            Console.WriteLine($"Name: {Name}, Age: {Age}, Grade Level: {GradeLevel}, Student ID: {StudentID}");
+            Console.WriteLine($"GPA: {CalculateGPA():F2}");
+        }
     }
+
+   
 }

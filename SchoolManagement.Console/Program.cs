@@ -2,7 +2,7 @@
 
 var school = new School();
 
-Console.WriteLine("Welcome to School Management System");
+Console.WriteLine("Welcome to School Management System!");
 
 while (true)
 {
@@ -16,6 +16,7 @@ while (true)
     Console.WriteLine("8. Exit");
 
     Console.Write("Choose an option: ");
+    Console.Write("Thank you : ");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
